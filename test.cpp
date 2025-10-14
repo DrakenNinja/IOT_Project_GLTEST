@@ -35,10 +35,11 @@ int main(){
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
 	glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, true);
+  glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 	// Open a window and create its OpenGL context
 	GLFWwindow* window; // (In the accompanying source code, this variable is global for simplicity)
-	window = glfwCreateWindow( 1280, 720, "Tutorial 01", NULL, NULL);
+	window = glfwCreateWindow( 720, 720, "Tutorial 01", NULL, NULL);
 
 	if( window == NULL ){
 			fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
@@ -76,10 +77,10 @@ int main(){
 
 	GLfloat textured_quad[] = {
     // positions          // colors           // texture coords
-     1.0f,  1.0f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-     1.0f, 	0.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-	   0.0f, 	0.0f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-     0.0f,  1.0, 0.0f,   1.0f, 1.0f, 0.0f,    0.0f, 1.0f    // top left 
+     1.0f,   1.0f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+     1.0f, 	-1.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
+	   -1.0f, -1.0f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+     -1.0f,  1.0f, 0.0f,   1.0f, 1.0f, 0.0f,    0.0f, 1.0f    // top left 
 };
 	
 	unsigned int indices[]{
