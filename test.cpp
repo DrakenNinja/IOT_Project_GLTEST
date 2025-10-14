@@ -1,3 +1,7 @@
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,9 +17,6 @@
 #include <fstream>
 #include <sstream>
 
-
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 
 using namespace glm;
 
@@ -52,7 +53,7 @@ int main(){
 			return -1;
 	}   
 	
-//	glfwSetFramebufferSizeCallback(window, framebuffer_size_CB);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_CB);
 
 
 
@@ -75,10 +76,10 @@ int main(){
 
 	GLfloat textured_quad[] = {
     // positions          // colors           // texture coords
-     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-     0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-    -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
+     1.0f,  1.0f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+     1.0f, 	0.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
+	   0.0f, 	0.0f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+     0.0f,  1.0, 0.0f,   1.0f, 1.0f, 0.0f,    0.0f, 1.0f    // top left 
 };
 	
 	unsigned int indices[]{
@@ -120,7 +121,8 @@ int main(){
 	int width, height, nrCannels;
 	stbi_set_flip_vertically_on_load(true);  
 
-	unsigned char *data = stbi_load("bever.png", &width, &height, &nrCannels, 0);
+	unsigned char *data = stbi_load("bevershade.png", &width, &height, &nrCannels, 3);
+//	unsigned char *data = stbi_load("shade_sim.png", &width, &height, &nrCannels, 3);
 	if(!data){
 		printf("img load fail");
 		return 1;
@@ -132,8 +134,9 @@ int main(){
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_TEXTURE_BORDER_COLOR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_TEXTURE_BORDER_COLOR);	
+
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
