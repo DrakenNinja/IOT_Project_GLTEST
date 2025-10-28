@@ -123,6 +123,7 @@ int main(){
 	stbi_set_flip_vertically_on_load(true);  
 
 	unsigned char *data = stbi_load("bevershade.png", &width, &height, &nrCannels, 3);
+	//unsigned char *data = stbi_load("bever.png", &width, &height, &nrCannels, 3);
 //	unsigned char *data = stbi_load("shade_sim.png", &width, &height, &nrCannels, 3);
 	if(!data){
 		printf("img load fail");
